@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,7 +14,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
+        setContentView(R.layout.pantalla_inicial);
+        //agregamos animaciones
+        animation animacion1= animationUtils.loadAnimation(context: this,R.anim.desplazamiento_arriba);
+
+
+
+
+
+
         LinearLayout linearLayout= findViewById(R.id.Llayout);
         anim=(AnimationDrawable) linearLayout.getBackground();
         anim.setEnterFadeDuration(1000);
