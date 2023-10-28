@@ -2,45 +2,34 @@ package com.example.perrap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.drawable.AnimationDrawable;
+import android.content.Intent;
+
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.view.animation.Animation;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AnimationDrawable anim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
-        setContentView(R.layout.pantalla_inicial);
+        setContentView(R.layout.activity_main);
         //agregamos animaciones
-        animation animacion1= animationUtils.loadAnimation(context: this,R.anim.desplazamiento_arriba);
-
-
-
-
-
-
-        LinearLayout linearLayout= findViewById(R.id.Llayout);
-        anim=(AnimationDrawable) linearLayout.getBackground();
-        anim.setEnterFadeDuration(1000);
-        anim.setExitFadeDuration(1000);
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (anim != null && !anim.isRunning()) {
-            anim.start();
-        }
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (anim != null && anim.isRunning()) {
-            anim.stop();
-        }
+        Animation animacion1 = AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
+        ImageView logoImageview = findViewById(R.id.logoimageView);
+        logoImageview.setAnimation(animacion1);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 4000);
     }
 }
